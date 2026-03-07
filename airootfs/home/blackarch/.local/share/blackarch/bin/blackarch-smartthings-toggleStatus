@@ -1,0 +1,14 @@
+#!/usr/bin/bash
+dev=""
+status=""
+test -z "$2" && dev=$(blackarch-smartthings-deviceList | grep -i "$1" | rofi -dmenu -i) || dev=$2
+test -z "$dev" && exit -1
+dev=$(echo ${dev} | rev | cut -d' ' -f1 | rev)
+test -z "$1" && status=$(smartthings devices:status ${dev} | jq .components.main.switch.switch.value) || status=$1
+if [ -n "$1" ]; then
+  status = $1
+else
+  status=${status//\"/}
+  [[ "${status}" == "on" ]] && status=off || status=on
+fi
+smartthings devices:commands ${dev} switch:${status}

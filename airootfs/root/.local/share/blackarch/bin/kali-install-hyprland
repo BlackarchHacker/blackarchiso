@@ -1,0 +1,5 @@
+kali-pkg-add hyprcursor-util hypridle hyprland hyprland-protocols hyprland-qtutils hyprlock hyprpaper nwg-clipman nwg-displays nwg-hello xdg-desktop-portal-hyprland qml6-module-org-hyprland-style swaybg swayosd swappy slurp rofi pulsemixer dunst waybar
+test ! -d $HOME/Videos && xdg-user-dirs-update
+test ! -d $HOME/.config/nvim && git clone "https://github.com/davidbasilefilho/omarchy.nvim" ~/.config/nvim
+systemctl --user daemon-reexec
+systemctl --user enable --now battery-alert.timer

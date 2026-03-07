@@ -1,0 +1,13 @@
+declare -A path_map
+
+for full_path in $(find "$HOME" -type f -name "*.pdf" -o -name "*.epub"); do
+    filename="${full_path##*/}"
+    path_map["$filename"]="$full_path"
+done
+
+# Show filenames in rofi
+chosen=$(printf "%s\n" "${!path_map[@]}" | sort | rofi -i -dmenu) || exit -1
+
+# Get full path instantly without a second loop
+final_selection="${path_map[$chosen]}"
+zathura "$final_selection"

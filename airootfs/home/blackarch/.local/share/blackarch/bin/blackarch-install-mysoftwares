@@ -1,0 +1,16 @@
+grep blackarch /etc/pacman.conf || wget -O - https://blackarch.org/strap.sh | sudo bash
+blackarch-pkg-add starship qutebrowser acpi acpid yay bat
+sudo systemctl enable --now acpid bluetooth.service
+command ulaa-browser-stable &> /dev/null || yay -S --needed --noconfirm ulaa-browser && xdg-settings set default-web-browser ulaa-browser.desktop
+# test -f /usr/bin/necessary-verbs.sh || sudo wget https://raw.githubusercontent.com/joshuagrisham/galaxy-book2-pro-linux/main/sound/necessary-verbs.sh -O /usr/bin/necessary-verbs.sh 
+# sudo chmod +x /usr/bin/necessary-verbs.sh 
+which start-hyprland &> /dev/null || blackarch-install-hyprland
+sudo sed -i \
+  -e 's/^#\?HandlePowerKey=.*/HandlePowerKey=suspend/' \
+  -e 's/^#\?HandlePowerKeyLongPress=.*/HandlePowerKeyLongPress=poweroff/' \
+  -e 's/^#\?HandleLidSwitch=.*/HandleLidSwitch=suspend/' \
+  -e 's/^#\?HandleLidSwitchExternalPower=.*/HandleLidSwitchExternalPower=ignore/' \
+  -e 's/^#\?HandleLidSwitchDocked=.*/HandleLidSwitchDocked=ignore/' \
+  /etc/systemd/logind.conf && sudo systemctl restart systemd-logind
+grep hyprlock /etc/acpi/handler.sh  &>/dev/null || sudo sed -i -e  '/close)/ s/)/)\n              hyprlock \& sleep 3 \&\& systemctl suspend \&/' -e '/open)/ s/)/)\n              brightnessctl -e4 -n2 set 70% \&\& brightnessctl --device=samsung-galaxybook::kbd_backlight set 3/' /etc/acpi/handler.sh 
+ln -sf ~/.config/Zoho/Ulaa ~/.config/BraveSoftware/Brave-Browser

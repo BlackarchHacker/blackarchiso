@@ -1,0 +1,2 @@
+which smartthing &> /dev/null || wget -c -O $HOME/Downloads/smartthings-linux-x64.tgz https://github.com/SmartThingsCommunity/smartthings-cli/releases/download/%40smartthings%2Fcli%402.0.2/smartthings-linux-x64.tgz
+sudo tar -xvf $HOME/Downloads/smartthings-linux-x64.tgz -C /usr/bin && rm -f $HOME/Downloads/smartthings-linux-x64.tgz

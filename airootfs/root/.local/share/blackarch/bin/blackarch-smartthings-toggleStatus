@@ -1,0 +1,8 @@
+#!/usr/bin/bash
+dev=$(blackarch-smartthings-deviceList |rofi -dmenu -i )
+dev=${dev/*:/}
+status=$(blackarch-smartthings-deviceStatus $dev |jq .components.main.switch.switch.value)
+status=${status//\"/}
+[[ "${status}" == "on" ]] && status=off || status=on
+smartthings devices:commands ${dev} switch:${status}
+

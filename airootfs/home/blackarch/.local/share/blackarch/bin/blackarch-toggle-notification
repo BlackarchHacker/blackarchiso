@@ -1,0 +1,1 @@
+[[ $(dunstctl is-paused) == true ]] && dunstctl set-paused false || dunstctl set-paused true

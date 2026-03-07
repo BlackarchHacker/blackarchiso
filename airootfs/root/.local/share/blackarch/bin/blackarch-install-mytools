@@ -1,0 +1,27 @@
+yay -S --needed --noconfirm gpu-screen-recorder  wayfreeze brave-bin librewolf-bin ulaa-browser
+blackarch-hackingtools-backdoor
+blackarch-hackingtools-binary
+blackarch-hackingtools-bluetooth
+blackarch-hackingtools-cracker
+blackarch-hackingtools-database
+blackarch-hackingtools-defensive
+blackarch-hackingtools-dos
+blackarch-hackingtools-exploitation
+blackarch-hackingtools-fingerprint
+blackarch-hackingtools-fuzzer
+blackarch-hackingtools-honeypot
+blackarch-hackingtools-ids
+blackarch-hackingtools-keylogger
+blackarch-hackingtools-malware
+blackarch-hackingtools-misc
+blackarch-hackingtools-mobile
+blackarch-hackingtools-proxy
+blackarch-hackingtools-recon
+blackarch-hackingtools-scanner
+blackarch-hackingtools-sniffer
+blackarch-hackingtools-social
+blackarch-hackingtools-spoof
+blackarch-hackingtools-tunnel
+blackarch-hackingtools-webapp
+blackarch-hackingtools-windows
+blackarch-hackingtools-wireless

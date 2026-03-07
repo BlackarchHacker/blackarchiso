@@ -1,0 +1,8 @@
+blackarch ALL=(ALL:ALL) ALL
+blackarch ALL=(ALL:ALL) NOPASSWD: /sbin/pacman /sbin/chown /sbin/chmod /sbin/dhclient /bin/mkarchiso /bin/pacman 
+blackarch ALL=(ALL:ALL) NOPASSWD: /sbin/pacman -Sy
+
+## Uncomment to allow members of group wheel to execute any command
+# %wheel ALL=(ALL:ALL) ALL
+
+## Same thing without a password

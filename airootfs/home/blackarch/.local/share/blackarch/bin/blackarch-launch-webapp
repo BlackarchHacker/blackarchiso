@@ -1,0 +1,22 @@
+#!/usr/bin/env bash
+#!/bin/bash
+
+browser=$(xdg-settings get default-web-browser)
+
+case $browser in
+google-chrome* | brave-browser* | ulaa-browser* | microsoft-edge* | opera* | vivaldi* | helium*) browser="ulaa-browser.desktop" ;;
+*) browser="org.qutebrowser.qutebrowser.desktop" ;;
+esac
+
+case $1 in
+*youtube* | *whatsapp* | *arattai* | *discord*) browser="ulaa-browser.desktop" ;;
+esac
+# exec setsid $(sed -n 's/^Exec=\([^ ]*\).*/\1/p' {~/.local,~/.nix-profile,/usr}/share/applications/$browser 2>/dev/null | head -1) --app="$1" "${@:2}"
+# if [[ "$1" == *"youtube.com"* ]]; then
+#   exec setsid uwsm-app -- $(sed -n 's/^Exec=\([^ ]*\).*/\1/p' {~/.local,~/.nix-profile,/usr}/share/applications/ulaa-browser.desktop 2>/dev/null | head -1) --app="$1" "${@:2}"
+if [[ "$browser" == "org.qutebrowser.qutebrowser.desktop" ]]; then
+  exec setsid $(sed -n 's/^Exec=\([^ ]*\).*/\1/p' {~/.local,~/.nix-profile,/usr}/share/applications/$browser 2>/dev/null | head -1) --target window "$1" "${@:2}"
+else
+  exec setsid $(sed -n 's/^Exec=\([^ ]*\).*/\1/p' {~/.local,~/.nix-profile,/usr}/share/applications/$browser 2>/dev/null | head -1) --app="$1" "${@:2}"
+fi
+#

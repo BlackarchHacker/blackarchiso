@@ -1,0 +1,5 @@
+#!/bin/bash
+
+# A script to display Hyprland keybindings defined in your configuration
+# using walker for an interactive search menu.
+grep bindd $HOME/.config/hypr/*.conf | cut -d= -f2 | sort -t, -k3 | awk -F, '{gsub(/^[[:space:]]+/, "", $3); printf "%-50s => \t%-5s, %-1s\n", $3, $1, $2 }' | rofi -dmenu -i -theme /usr/share/rofi/themes/Arc-Dark.rasi

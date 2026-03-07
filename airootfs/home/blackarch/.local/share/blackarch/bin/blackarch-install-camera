@@ -1,0 +1,5 @@
+blackarch-pkg-add pipewire-v4l2  libcamera libcamera-tools pipewire-libcamera
+sudo usermod -aG video $USER
+systemctl --user restart pipewire pipewire-pulse
+yay -S --noconfirm --needed intel-ipu6-dkms-git  intel-ipu6-camera-bin iriunwebcam-bin
+

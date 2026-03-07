@@ -1,0 +1,15 @@
+declare -A path_map
+
+for full_path in $(find "$HOME" -type f -name "*.mp3"); do
+    filename="$(dirname ${full_path})"
+    filename="$(basename ${filename})"
+    path_map["$filename"]="$(dirname $full_path)"
+done
+
+# Show filenames in rofi
+chosen=$(printf "%s\n" "${!path_map[@]}" | sort | uniq | rofi -i -dmenu) || exit -1
+
+# Get full path instantly without a second loop
+final_selection="${path_map[$chosen]}"
+echo $path_map
+mpv "$final_selection"

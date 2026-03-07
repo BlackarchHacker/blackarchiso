@@ -1,0 +1,167 @@
+{
+  "reload_style_on_change": true,
+  "layer": "top",
+  "position": "top",
+  "spacing": 2,
+  "height": 36,
+  "modules-left": ["custom/blackarch","custom/launcher", "custom/chrome", "custom/thunar", "hyprland/workspaces"],
+  "modules-center": ["clock", "custom/update"],
+  "modules-right": [
+    "group/tray-expander",
+    "bluetooth",
+    "network",
+    "pulseaudio",
+    "cpu",
+    "battery"
+  ],
+  "hyprland/workspaces": {
+    "on-click": "activate",
+    "format": "{icon}",
+    "format-icons": {
+      "default": "",
+      "1": "Terminal",
+      "2": "WebBrowser",
+      "4": "OnlineLearning",
+      "5": "ObsidianNotes",
+      "7": "BittenTech",
+      "8": "HackTheBox",
+      "9": "TryHackMe",
+      "10": "Youtube",
+      "3": "Documents",
+      "6": "MusicPlayer",
+      "active": "󱓻"
+    },
+    "persistent-workspaces": {
+      "1": [],
+      "2": [],
+      "7": [],
+      "9": []
+    }
+  },
+  "custom/blackarch": {
+    "format": "<span font='blackarch'>\ue900</span>",
+    // "on-click": "rofi -show drun",
+    "on-click": "blackarch-menu",
+    "on-click-right": "kitty",
+    "tooltip-format": "Blackarch Menu\n\nSuper + Alt + Space"
+  },
+  "custom/update": {
+    "format": "",
+    "exec": "blackarch-update-available",
+    "on-click": "blackarch-launch-floating-terminal-with-presentation blackarch-update",
+    "tooltip-format": "Blackarch update available",
+    "signal": 7,
+    "interval": 21600
+  },
+  "custom/thunar": {
+    "format": " ",                    // folder icon
+    "tooltip": "Open Thunar",
+    "on-click-right": "thunar",
+    "on-click": "kitty yazi"
+  },
+  "custom/chrome": {
+    "format": " ",                 // Chrome icon
+    "tooltip": "Google Chrome",
+    "on-click": "brave",
+    // "on-click-right": "microsoft-edge-stable"
+    "on-click-right": "ulaa-browser-stable"
+  },
+
+  "custom/launcher": {
+    "format": " ",
+    "tooltip": "Application Launcher",
+    "on-click": "librewolf",
+    "on-click-right": "ulaa-browser-stable"
+  },
+  "cpu": {
+    "interval": 5,
+    "format": "󰍛",
+    "on-click": "blackarch-launch-or-focus-tui btop"
+  },
+  "clock": {
+    "format": "{:L%A %H:%M}",
+    "format-alt": "{:L%d %B W%V %Y}",
+    "tooltip": false,
+    "on-click-right": "blackarch-launch-floating-terminal-with-presentation blackarch-tz-select"
+  },
+  "network": {
+    "format-icons": ["󰤯", "󰤟", "󰤢", "󰤥", "󰤨"],
+    "format": "{icon}",
+    "format-wifi": "{icon}",
+    "format-ethernet": "󰀂",
+    "format-disconnected": "󰤮",
+    "tooltip-format-wifi": "{essid} ({frequency} GHz)\n⇣{bandwidthDownBytes}  ⇡{bandwidthUpBytes}",
+    "tooltip-format-ethernet": "⇣{bandwidthDownBytes}  ⇡{bandwidthUpBytes}",
+    "tooltip-format-disconnected": "Disconnected",
+    "interval": 3,
+    "spacing": 1,
+    "on-click": "blackarch-launch-wifi & iwctl station wlan0 scan on",
+    "on-click-right": "sudo dhclient"
+  },
+  "battery": {
+    "format": "{capacity}% {icon}",
+    "format-discharging": "{icon}",
+    "format-charging": "{icon}",
+    "format-plugged": "",
+    "format-icons": {
+      "charging": ["󰢜", "󰂆", "󰂇", "󰂈", "󰢝", "󰂉", "󰢞", "󰂊", "󰂋", "󰂅"],
+      "default": ["󰁺", "󰁻", "󰁼", "󰁽", "󰁾", "󰁿", "󰂀", "󰂁", "󰂂", "󰁹"]
+    },
+    "format-full": "󰂅",
+    "tooltip-format-discharging": "{power:>1.0f}W↓ {capacity}%",
+    "tooltip-format-charging": "{power:>1.0f}W↑ {capacity}%",
+    "interval": 3,
+    "on-click": "notify-send -u normal 'Waybar' 'Charger Disconnected!' && smartthings devices:commands 4e715c22-7aa0-4bd6-9425-b694b26e325d switch:off",
+    "on-click-right": "notify-send -u normal 'Waybar' 'Charger Connected!' && smartthings devices:commands 4e715c22-7aa0-4bd6-9425-b694b26e325d switch:on",
+    "states": {
+      "warning": 20,
+      "critical": 10
+    },
+    "events": {
+		"on-discharging-warning": "notify-send -u normal 'Waybar' 'Low Battery' && smartthings devices:commands 4e715c22-7aa0-4bd6-9425-b694b26e325d switch:on",
+		"on-discharging-critical": "notify-send -u critical 'Waybar' 'Very Low Battery' && systemctl sleep",
+		"on-charging-95": "notify-send -u normal 'Waybar' 'Battery Full!' && smartthings devices:commands 4e715c22-7aa0-4bd6-9425-b694b26e325d switch:off"
+	  }
+  },
+  "bluetooth": {
+    "format": "",
+    "format-disabled": "󰂲",
+    "format-connected": "󰂱",
+    "format-no-controller": "",
+    "tooltip-format": "Devices connected: {num_connections}",
+    "on-click": "blackarch-launch-bluetooth"
+  },
+  "pulseaudio": {
+    "format": "{icon}",
+    "on-click": "blackarch-launch-or-focus-tui wiremix",
+    "on-click-right": "pamixer -t",
+    "tooltip-format": "Playing at {volume}%",
+    "scroll-step": 5,
+    "format-muted": "",
+    "format-icons": {
+      "default": ["", "", ""]
+    }
+  },
+  "group/tray-expander": {
+    "orientation": "inherit",
+    "drawer": {
+      "transition-duration": 600,
+      "children-class": "tray-group-item"
+    },
+    "modules": ["custom/expand-icon", "tray"]
+  },
+  "custom/expand-icon": {
+    "format": "",
+    "tooltip": false
+  },
+  "custom/screenrecording-indicator": {
+    "on-click": "blackarch-cmd-screenrecord",
+    "exec": "$BLACKARCH_PATH/default/waybar/indicators/screen-recording.sh",
+    "signal": 8,
+    "return-type": "json"
+  },
+  "tray": {
+    "icon-size": 12,
+    "spacing": 17
+  }
+}

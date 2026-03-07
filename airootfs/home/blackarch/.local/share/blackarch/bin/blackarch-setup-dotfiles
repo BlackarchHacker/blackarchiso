@@ -1,0 +1,17 @@
+#/usr/bin/bash
+[[ test -d $HOME/.config/systemd && test -e $HOME/.config/systemd ]] && cp -a $HOME/.local/share/blackarch/defaults/.config/systemd/user/* $HOME/.config/systemd/user/ || ln -sf $HOME/.local/share/blackarch/defaults/.config/systemd $HOME/.config/systemd
+test ! -L $HOME/.config/blackarch && ln -sf $HOME/.local/share/blackarch/defaults/.config/blackarch/ $HOME/.config/blackarch
+test ! -L $HOME/.config/dunst && ln -sf $HOME/.local/share/blackarch/defaults/.config/dunst/ $HOME/.config/dunst
+test ! -L $HOME/.config/fastfetch && ln -sf $HOME/.local/share/blackarch/defaults/.config/fastfetch/ $HOME/.config/fastfetch
+test ! -L $HOME/.config/hypr && ln -sf $HOME/.local/share/blackarch/defaults/.config/hypr/ $HOME/.config/hypr
+test ! -L $HOME/.config/i3 && ln -sf $HOME/.local/share/blackarch/defaults/.config/i3/ $HOME/.config/i3
+test ! -L $HOME/.config/kitty && ln -sf $HOME/.local/share/blackarch/defaults/.config/kitty/ $HOME/.config/kitty
+test ! -L $HOME/.config/mpv && ln -sf $HOME/.local/share/blackarch/defaults/.config/mpv/ $HOME/.config/mpv
+test ! -L $HOME/.config/nvim && ln -sf $HOME/.local/share/blackarch/defaults/.config/nvim/ $HOME/.config/nvim
+test ! -L $HOME/.config/qutebrowser && ln -sf $HOME/.local/share/blackarch/defaults/.config/qutebrowser/ $HOME/.config/qutebrowser
+test ! -L $HOME/.config/rofi && ln -sf $HOME/.local/share/blackarch/defaults/.config/rofi/ $HOME/.config/rofi
+test ! -L $HOME/.config/starship && ln -sf $HOME/.local/share/blackarch/defaults/.config/starship/ $HOME/.config/starship
+test ! -L $HOME/.config/tmux && ln -sf $HOME/.local/share/blackarch/defaults/.config/tmux/ $HOME/.config/tmux
+test ! -L $HOME/.config/waybar && ln -sf $HOME/.local/share/blackarch/defaults/.config/waybar/ $HOME/.config/waybar
+test ! -L $HOME/.config/yazi && ln -sf $HOME/.local/share/blackarch/defaults/.config/yazi/ $HOME/.config/yazi
+test ! -L $HOME/.config/yt-dlp && ln -sf $HOME/.local/share/blackarch/defaults/.config/yt-dlp/ $HOME/.config/yt-dlp
